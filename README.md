@@ -48,7 +48,7 @@ CrimsonZone/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/CrimsonZone.git
+   git clone https://github.com/POWBoy1/CrimsonZone.git
    cd CrimsonZone
    ```
 
@@ -180,18 +180,6 @@ All modern browsers (ES6+) are supported.
 
 ---
 
-## Configuration
-
-### Environment Variables
-
-Create a `.env` file in the root directory (optional):
-
-```env
-PORT=3000
-NODE_ENV=development
-PROXY_URL=https://your-proxy-url.com
-```
-
 ### Server Configuration
 
 Modify `/server/index.js` to customize:
@@ -204,11 +192,7 @@ Modify `/server/index.js` to customize:
 
 ## Dependencies
 
-- **Express.js** — Lightweight web framework
-- **dotenv** — Environment variable management
-- **Vanilla JS** — No heavy frontend dependencies
-
-See `package.json` for complete dependency list.
+See `package.json` for dependency list.
 
 ---
 
@@ -282,4 +266,4 @@ For questions or issues:
 
 ---
 
-Made with care by the CrimsonZone team
+Made with care by the CrimsonZone team or Just POWBoy1/POW_Boy1
