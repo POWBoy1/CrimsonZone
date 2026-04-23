@@ -92,19 +92,19 @@ pm2 restart CrimsonZone
 
 ### JSON Format
 
-All content is stored in JSON files in the `/data` directory. Use this structure:
+All content is stored as JSON arrays in the `/data` directory. Each item is a string with bracketed key-value pairs:
 
 ```json
 [
-  {
-    "name": "Game Name",
-    "icon": "path/to/icon.png",
-    "thumbnail": "path/to/thumbnail.png",
-    "description": "Brief description",
-    "file": "https://game-url.com"
-  }
+  "[name]=\"Example\", [icon]=\"/image/location.png\", [thumbnail]=\"image/location.png\", [file]=\"File/index.html",
 ]
 ```
+
+**Fields:**
+- `[name]` — Display name of the content
+- `[icon]` — Path to icon image
+- `[thumbnail]` — Path to thumbnail image
+- `[file]` — URL
 
 ### Adding Content
 
@@ -279,3 +279,7 @@ For questions or issues:
 - Import/export settings
 - Analytics dashboard
 - Mobile app version
+
+---
+
+Made with care by the CrimsonZone team
