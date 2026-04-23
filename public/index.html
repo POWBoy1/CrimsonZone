@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; worker-src 'self'; connect-src 'self' https: wss:;">
+  <title>CrimsonZone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="/assets/favicon.png" type="image/png" />
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+
+      <a class="logo" href="/">
+        <svg class="logo-hex" width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M14 2L25.5 8.5V21.5L14 28L2.5 21.5V8.5L14 2Z" fill="#dc1c2e" fill-opacity="0.15" stroke="#dc1c2e" stroke-width="1.5"/>
+          <path d="M14 7L21 11V19L14 23L7 19V11L14 7Z" fill="#dc1c2e"/>
+        </svg>
+        <span class="logo-text">Crimson<span class="logo-accent">Zone</span></span>
+      </a>
+
+      <div class="nav-tabs">
+        <button class="nav-tab active" data-section="games">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="20" height="12" rx="4"/>
+            <path d="M7 9v6"/><path d="M4 12h6"/>
+            <path d="M17.5 10.5h.01"/><path d="M20.5 13.5h.01"/>
+          </svg>
+          Games
+        </button>
+
+        <button class="nav-tab" data-section="apps">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+          Apps
+        </button>
+
+        <button class="nav-tab" data-section="tools">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+          Tools
+        </button>
+
+        <button class="nav-tab" data-section="proxy">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          Proxy
+        </button>
+      </div>
+
+      <div class="nav-search">
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search..." autocomplete="off" spellcheck="false" />
+        <kbd class="search-kbd">Ctrl+K or ⌘+K</kbd>
+      </div>
+
+      <!-- Cloak -->
+      <div class="cloak-wrap" id="cloakWrap">
+        <button class="cloak-nav-btn" title="Tab Disguise" onclick="toggleCloakMenu()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12C2 12 5 5 12 5s10 7 10 7-3 7-10 7S2 12 2 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+        <div class="cloak-menu" id="cloakMenu">
+          <div class="cloak-title">Tab Disguise</div>
+          <div class="cloak-option" onclick="setCloak('google','Google','assets/google.ico')">
+            <img src="/assets/google.ico" class="cloak-icon">
+            Google
+          </div>
+          <div class="cloak-option" onclick="setCloak('docs','Google Docs','assets/docs.png')">
+            <img src="/assets/docs.png" class="cloak-icon">
+            Google Docs
+          </div>
+          <div class="cloak-option" onclick="setCloak('classroom','Home - Classroom','assets/classroom.png')">
+            <img src="/assets/classroom.png" class="cloak-icon">
+            Classroom
+          </div>
+          <div class="cloak-option" onclick="setCloak('khan','Khan Academy','assets/khan.ico')">
+            <img src="/assets/khan.ico" class="cloak-icon">
+            Khan Academy
+          </div>
+          <div class="cloak-divider"></div>
+          <div class="cloak-option cloak-reset" onclick="resetCloak()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.34"/></svg>
+            Reset
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#dc1c2e"/></svg>
+        Unblocked &amp; Always Online
+      </div>
+      <h1 class="hero-title">Welcome to Crimson<span class="hero-accent">Zone</span></h1>
+      <p class="hero-sub">Games. Apps. Tools. All in one place.</p>
+    </div>
+  </header>
+
+  <main class="main">
+    <div id="recentSection" style="display:none" class="recent-section">
+      <div class="section-header" style="margin-bottom:12px">
+        <h2 class="section-title small">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          Recently Played
+        </h2>
+        <button class="btn-text-sm" onclick="clearRecent()">Clear</button>
+      </div>
+      <div class="recent-strip" id="recentStrip"></div>
+    </div>
+
+    <div class="section-header" id="mainSectionHeader">
+      <h2 class="section-title" id="sectionTitle">
+        <svg id="sectionIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="6" width="20" height="12" rx="4"/>
+          <path d="M7 9v6"/><path d="M4 12h6"/>
+          <path d="M17.5 10.5h.01"/><path d="M20.5 13.5h.01"/>
+        </svg>
+        Games
+      </h2>
+      <span class="section-count" id="sectionCount">Loading...</span>
+    </div>
+
+    <div class="grid" id="itemGrid">
+      <div class="card skeleton"></div>
+      <div class="card skeleton"></div>
+      <div class="card skeleton"></div>
+      <div class="card skeleton"></div>
+      <div class="card skeleton"></div>
+      <div class="card skeleton"></div>
+      <div class="card skeleton"></div>
+      <div class="card skeleton"></div>
+    </div>
+
+    <div class="empty-state" id="emptyState" style="display:none">
+      <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#3a3a4e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <p class="empty-text">No results for "<span id="emptyQuery"></span>"</p>
+      <button class="btn-outline" onclick="clearSearch()">Clear Search</button>
+    </div>
+
+    <div class="error-state" id="errorState" style="display:none">
+      <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#3a3a4e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <p class="error-text">Failed to load content. Please refresh.</p>
+      <button class="btn-outline" onclick="retryLoad()">Try Again</button>
+    </div>
+
+    <div id="proxySection" style="display:none">
+      <div class="proxy-card">
+        <div class="proxy-card-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#dc1c2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <h2 class="proxy-card-title">Web Proxy</h2>
+        <p class="proxy-card-desc">Access any website through CrimsonZone's proxy. Enter a URL or search term below.</p>
+        <div class="proxy-input-row">
+          <div class="proxy-input-wrap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#5a5a6e;flex-shrink:0">
+              <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            <input type="text" id="proxyUrl" placeholder="https://example.com or search..." autocomplete="off" spellcheck="false"/>
+          </div>
+          <button class="btn-crimson" onclick="goProxy()">
+            Go
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+        <div class="proxy-chips">
+          <button class="proxy-chip" onclick="quickProxy('https://google.com')">Google</button>
+          <button class="proxy-chip" onclick="quickProxy('https://youtube.com')">YouTube</button>
+          <button class="proxy-chip" onclick="quickProxy('https://wikipedia.org')">Wikipedia</button>
+          <button class="proxy-chip" onclick="quickProxy('https://reddit.com')">Reddit</button>
+          <button class="proxy-chip" onclick="quickProxy('https://github.com')">GitHub</button>
+          <button class="proxy-chip" onclick="quickProxy('https://twitch.tv')">Twitch</button>
+        </div>
+      </div>
+
+      <div class="proxy-frame-wrap" id="proxyFrameWrap" style="display:none">
+        <div class="proxy-frame-bar">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#dc1c2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span class="proxy-frame-url" id="proxyFrameUrl"></span>
+          <button class="proxy-frame-close" id="proxyFullscreenBtn" onclick="toggleFullscreen('proxyFrame', 'proxyFullscreenBtn')" title="Fullscreen">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+              <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+            </svg>
+          </button>
+          <button class="proxy-frame-close" onclick="closeProxy()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+        <iframe id="proxyFrame" src="" allowfullscreen></iframe>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── Launch Modal ── -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-info">
+          <img class="modal-icon" id="modalIcon" src="" alt="" onerror="this.style.display='none'"/>
+          <span class="modal-name" id="modalName"></span>
+        </div>
+        <div class="modal-actions">
+          <button class="modal-btn" id="modalFullscreenBtn" onclick="toggleFullscreen('gameFrame', 'modalFullscreenBtn')" title="Fullscreen">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+              <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+            </svg>
+          </button>
+          <button class="modal-btn" id="modalNewTab" title="Open in new tab">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </button>
+          <button class="modal-btn modal-close-btn" id="modalClose" title="Close">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <iframe id="gameFrame" src="" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups allow-modals"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer"></div>
+
+  <!-- Mobile nav -->
+  <nav class="mobile-nav" id="mobileNav">
+    <button class="mobile-tab active" data-section="games">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M7 9v6"/><path d="M4 12h6"/><path d="M17.5 10.5h.01"/><path d="M20.5 13.5h.01"/></svg>
+      <span>Games</span>
+    </button>
+    <button class="mobile-tab" data-section="apps">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span>Apps</span>
+    </button>
+    <button class="mobile-tab" data-section="tools">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      <span>Tools</span>
+    </button>
+    <button class="mobile-tab" data-section="proxy">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span>Proxy</span>
+    </button>
+  </nav>
+
+  <!-- Scramjet -->
+  <script src="/scram/scramjet.all.js" type="module"></script>
+  <script src="/js/parser.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
